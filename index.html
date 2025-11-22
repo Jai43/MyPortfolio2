@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francis Jireh Oronan - Software Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(52, 152, 219, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(52, 152, 219, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3498db;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .menu a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu a:hover {
+            color: #3498db;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+            min-height: 80vh;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #5a6c7d;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+
+        .btn-secondary:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 8px;
+            box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-top {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            color: #5a6c7d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-emoji {
+            font-size: 2.5rem;
+        }
+
+        .skill-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .skill-desc {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .project-video {
+            width: 100%;
+            height: 300px;
+            background: #f5f7fa;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-story {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .about-story p {
+            margin-bottom: 1.5rem;
+            color: #5a6c7d;
+            line-height: 1.8;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .trait-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .trait-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(52, 152, 219, 0.15);
+        }
+
+        .trait-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trait-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .trait-info {
+            font-size: 0.9rem;
+            color: #5a6c7d;
+        }
+
+        .contact-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .contact-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-type {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            color: #3498db;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #5a6c7d;
+            background: white;
+            border-radius: 20px;
+            margin-top: 4rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-lines"></div>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="brand">PORTFOLIO</div>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span></span>
+                    <span>Hello, I'm</span>
+                </div>
+                <h1 class="hero-title">Francis Jireh Oronan</h1>
+                <p class="hero-description">
+                    A passionate Software Developer crafting innovative digital solutions with modern technologies and creative problem-solving skills.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Get In Touch</a>
+                    <a href="#about" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="image-frame">
+                    <img src="Jai.jpg" alt="Profile" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="section-top">
+                <div class="section-badge">Skills</div>
+                <h2 class="section-heading">What I Do Best</h2>
+                <p class="section-text">
+                    My expertise spans multiple programming languages and technologies, enabling me to build comprehensive solutions
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">Java</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Proficient in object-oriented programming, Spring Framework, and building scalable enterprise applications with best practices
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">SQL</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Expert in database design, complex queries, optimization techniques, and efficient data management systems
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">C Language</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Strong foundation in systems programming, memory management, and performance-critical low-level operations
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">HTML</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Creating semantic, accessible markup with modern web standards and SEO optimization techniques
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">CSS</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Crafting responsive, visually stunning designs with advanced animations and modern styling techniques
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <div class="skill-emoji"></div>
+                        <h3 class="skill-name">JavaScript</h3>
+                    </div>
+                    <p class="skill-desc">
+                        Building dynamic, interactive web applications using ES6+, modern frameworks, and industry best practices
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section-top">
+                <div class="section-badge">Projects</div>
+                <h2 class="section-heading">My Work</h2>
+                <p class="section-text">
+                    A showcase of my recent projects demonstrating my skills and creativity
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <video class="project-video" controls>
+                        <source src="CartileWebsite.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="project-info">
+                        <span class="project-tag">🌐 Website</span>
+                        <h3 class="project-title">Cartile Website</h3>
+                        <p class="project-desc">
+                            An elegant e-commerce website for a luxury perfume brand featuring stunning product showcases, smooth animations, and an immersive shopping experience with modern UI design.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <video class="project-video" controls>
+                        <source src="NetflixClone.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="project-info">
+                        <span class="project-tag">🌐 Website</span>
+                        <h3 class="project-title">Netflix Clone</h3>
+                        <p class="project-desc">
+                            A fully responsive streaming platform clone replicating Netflix's interface with dynamic content browsing, category sections, and interactive hover effects for an authentic viewing experience.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <video class="project-video" controls>
+                        <source src="PomodoroTimer.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="project-info">
+                        <span class="project-tag">🌐 Website</span>
+                        <h3 class="project-title">Project Website 3</h3>
+                        <p class="project-desc">
+                           A productivity-focused web application implementing the Pomodoro Technique with customizable work/break intervals, visual countdown timer, and session tracking for enhanced time management.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <video class="project-video" controls>
+                        <source src="BillingManagementSystem.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="project-info">
+                        <span class="project-tag">☕ JavaFX</span>
+                        <h3 class="project-title">JavaFX Application</h3>
+                        <p class="project-desc">
+                            A comprehensive desktop application built with JavaFX for managing invoices, tracking transactions, and generating detailed billing reports with an intuitive interface and database integration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="section-top">
+                <div class="section-badge">About</div>
+                <h2 class="section-heading">Get To Know Me</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-story">
+                    <p>
+                        I'm a dedicated software developer with a comprehensive understanding of both front-end and back-end technologies. My programming journey has shaped me into a versatile developer capable of building complete solutions.
+                    </p>
+                    <p>
+                        With deep expertise in Java, C, and modern web technologies, I thrive on solving complex challenges and creating efficient, scalable applications that deliver real value and exceptional user experiences.
+                    </p>
+                    <p>
+                        I'm committed to continuous learning, writing clean maintainable code, and collaborating with teams to achieve outstanding results in every project I undertake.
+                    </p>
+                </div>
+
+                <div class="traits-grid">
+                    <div class="trait-card">
+                        <div class="trait-emoji">🎯</div>
+                        <div class="trait-name">Focused</div>
+                        <p class="trait-info">Detail-oriented mindset</p>
+                    </div>
+                    <div class="trait-card">
+                        <div class="trait-emoji">💡</div>
+                        <div class="trait-name">Creative</div>
+                        <p class="trait-info">Innovative solutions</p>
+                    </div>
+                    <div class="trait-card">
+                        <div class="trait-emoji">🤝</div>
+                        <div class="trait-name">Team Player</div>
+                        <p class="trait-info">Collaborative approach</p>
+                    </div>
+                    <div class="trait-card">
+                        <div class="trait-emoji">🚀</div>
+                        <div class="trait-name">Efficient</div>
+                        <p class="trait-info">Fast delivery</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section-top">
+                <div class="section-badge">Contact</div>
+                <h2 class="section-heading">Let's Work Together</h2>
+                <p class="section-text">
+                    Ready to start a project? I'm available for collaborations and new opportunities
+                </p>
+            </div>
+
+            <div class="contact-box">
+                <div class="contact-options">
+                    <a href="mailto:oronanfrancisjireh@gmail.com" class="contact-card">
+                        <div class="contact-emoji">📧</div>
+                        <div class="contact-type">Email</div>
+                        <div class="contact-info">oronanfrancisjireh@gmail.com</div>
+                    </a>
+
+                    <a href="https://github.com/Jai43" class="contact-card" target="_blank">
+                        <div class="contact-emoji">💻</div>
+                        <div class="contact-type">GitHub</div>
+                        <div class="contact-info">Jai43</div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/francis-jireh-oronan-0218b1315/" class="contact-card" target="_blank">
+                        <div class="contact-emoji">💼</div>
+                        <div class="contact-type">LinkedIn</div>
+                        <div class="contact-info">Francis Jireh Oronan</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Francis Jireh Oronan. Built with dedication and modern web technologies.</p>
+        </footer>
+    </div>
+</body>
+</html>
